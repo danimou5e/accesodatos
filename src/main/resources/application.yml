@@ -1,0 +1,51 @@
+spring:
+   profiles: default
+   datasource:
+      url: jdbc:mariadb://10.100.8.141:3306/SCI_SBD_QA
+      username: sci_app
+      password: 12345678
+      driver-class-name: org.mariadb.jdbc.Driver
+   jpa:
+      database-platform: org.hibernate.dialect.MySQLDialect
+
+server:
+   port: 8083
+   error:
+      include-stacktrace: never
+
+logging:
+   level:
+      org.springframework.web: INFO
+      mx.gob.imss.cit.sci: INFO
+
+info:
+   component: Microservicio para la consulta de incapacidades
+
+management:
+   endpoints:
+      web:
+         base-path: /mscsi-accesodatos/actuator
+         exposure:
+            include: health, info
+   endpoint:
+      health:
+         show-details: always
+   health:
+      defaults:
+         enabled: false
+      db:
+         enabled: true
+      ping:
+         enabled: true
+   info:
+      java:
+         enabled: true
+
+springdoc:
+   api-docs:
+      path: /mscsi-accesodatos/docs/api-docs
+      enabled: true
+   swagger-ui:
+      path: /mscsi-accesodatos/docs/swagger-ui.html
+      enabled: true
+
